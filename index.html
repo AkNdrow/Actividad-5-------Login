@@ -1,11 +1,37 @@
+<!-- Actividad 5
+ Flujo del proyecto:El proyecto son dos pantallas conectadas, no todo en una sola página.
+login.html: pantalla de acceso, con formulario de correo y contraseña validados. Al pasar la validación (simulado con JS, no requiere backend), se redirige a index.html.
+index.html: pantalla del sistema ya "dentro", con sidebar, navbar y el resto de la funcionalidad.
+Requisitos técnicos:
+
+HTML, CSS y JS.
+
+Puede usarse Bootstrap o Tailwind CSS como base de estilos (no ambos mezclados, y no otros frameworks de JS como React o Vue).
+
+Debe integrar las funciones ya creadas en la librería utileria.js.  
+Estructura visual de index.html:
+Sidebar (menú lateral): con botón hamburguesa para abrir/cerrar. Debe incluir la opción Usuarios, con submenú desplegable Captura.
+
+Navbar (barra superior): a la derecha debe mostrarse el nombre del usuario que "inició sesión". Al dar clic en el nombre, debe desplegarse un menú con la opción de Salir del sistema (que regresa a login.html, simulando el cierre de sesión).
+
+Funcionalidad requerida dentro de index.html:
+Menú Usuarios (en el sidebar): submenú Captura, con formulario de nombre de usuario, correo electrónico y contraseña, validado con validarCorreo y validarPassword.
+Formulario de alumnos: agregar campo de número de control, validado con longitud de 6 dígitos.
+Modal de edad: mostrar si el alumno es mayor de edad o no.
+Navbar con nombre de usuario: mostrar el nombre o correo capturado en login.html, con menú desplegable para cerrar sesión.
+-->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    
+    <h1>Actividad 5</h1>
+
 </body>
+
 </html>

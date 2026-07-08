@@ -27,6 +27,14 @@ Navbar con nombre de usuario: mostrar el nombre o correo capturado en login.html
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema Académico - Panel de Control</title>
+    
+    <!-- Redirección inmediata si no hay sesión iniciada -->
+    <script>
+        if (!localStorage.getItem("usuarioLogueado")) {
+            window.location.replace("login.html");
+        }
+    </script>
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
@@ -40,8 +48,8 @@ Navbar con nombre de usuario: mostrar el nombre o correo capturado en login.html
         src="https://cdn.jsdelivr.net/gh/AkNdrow/Actividad-3-----Componente-VIsual@1.0.1/JS/LibreriaComponentes.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/AkNdrow/Actividad-2---Utileria@1.0.1/JS/utileria.js"></script>
 
-    <script src="JS/Libreria.js" defer></script>
-    <script src="JS/index.js" defer></script>
+    <script src="JS/Libreria.js?v=2" defer></script>
+    <script src="JS/index.js?v=2" defer></script>
 </head>
 
 <body class="bg-slate-100 text-slate-800 font-sans antialiased">

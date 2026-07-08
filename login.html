@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema Académico - Iniciar Sesión</title>
-    
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/gh/AkNdrow/Actividad-2---Utileria@1.0.1/JS/utileria.js"></script>
 </head>
+
 <body class="bg-slate-100 h-screen flex items-center justify-center p-4">
 
     <div class="max-w-md w-full bg-white p-8 rounded-xl shadow-md border border-slate-200 space-y-6">
@@ -18,15 +22,20 @@
         <form id="formLogin" class="space-y-4" novalidate>
             <div>
                 <label class="block text-sm font-semibold mb-1.5">Correo Electrónico</label>
-                <input type="email" id="loginCorreo" class="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:border-purple-500" placeholder="usuario@tecnm.mx" required>
+                <input type="email" id="loginCorreo"
+                    class="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:border-purple-500"
+                    placeholder="usuario@tecnm.mx" required>
             </div>
 
             <div>
                 <label class="block text-sm font-semibold mb-1.5">Contraseña</label>
-                <input type="password" id="loginPass" class="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:border-purple-500" placeholder="••••••••" required>
+                <input type="password" id="loginPass"
+                    class="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:border-purple-500"
+                    placeholder="••••••••" required>
             </div>
 
-            <button type="submit" class="w-full py-3 bg-purple-600 hover:bg-purple-700 transition text-white font-medium rounded-md shadow-md mt-2">
+            <button type="submit"
+                class="w-full py-3 bg-purple-600 hover:bg-purple-700 transition text-white font-medium rounded-md shadow-md mt-2">
                 Ingresar al Sistema
             </button>
         </form>
@@ -39,17 +48,19 @@
             const pass = document.getElementById("loginPass").value.trim();
 
             if (!correo || !pass) {
-                alert("Por favor, llena todos los campos.");
+                Swal.fire("Error", "Por favor, llena todos los campos.", "error");
                 return;
             }
 
-            
+            if (typeof validarPassword === "function" && !validarPassword(pass)) {
+                Swal.fire("Acceso Denegado", "La contraseña no cumple con los requisitos mínimos de seguridad.", "error");
+                return;
+            }
+
             localStorage.setItem("usuarioLogueado", correo);
-            
-            
             window.location.href = "index.html";
         });
     </script>
 </body>
-</html>
 
+</html>

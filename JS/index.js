@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const btnSalir = document.getElementById("btnSalir");
     const nombreUsuarioNavbar = document.getElementById("nombreUsuarioNavbar");
 
-    
+
     const usuarioLogueado = localStorage.getItem("usuarioLogueado");
     if (usuarioLogueado) {
         nombreUsuarioNavbar.textContent = usuarioLogueado;
@@ -20,12 +20,12 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    
+
     document.addEventListener("click", () => {
         if (usuarioDropdown) usuarioDropdown.classList.add("hidden");
     });
 
-    
+
     if (btnSalir) {
         btnSalir.addEventListener("click", () => {
             localStorage.removeItem("usuarioLogueado"); // Limpia el localStorage
@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Lógica del submenú desplegable "Captura"
     const btnMenuUsuarios = document.getElementById("btnMenuUsuarios");
     const subminiCaptura = document.getElementById("subminiCaptura");
-    
+
     if (btnMenuUsuarios && subminiCaptura) {
         subminiCaptura.classList.add("hidden"); // Oculto por defecto
         btnMenuUsuarios.addEventListener("click", () => {
@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Lógica para cerrar el Modal (Fase 3)
     const btnCerrarModal = document.getElementById("btnCerrarModal");
     const modalEdad = document.getElementById("modalEdad");
-    
+
     if (btnCerrarModal && modalEdad) {
         btnCerrarModal.addEventListener("click", () => {
             modalEdad.classList.add("hidden");

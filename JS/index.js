@@ -9,7 +9,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (usuarioLogueado) {
         nombreUsuarioNavbar.textContent = usuarioLogueado;
     } else {
-        nombreUsuarioNavbar.textContent = "Usuario Anónimo";
+        // Redirige al login si no hay sesión
+        window.location.href = "login.html";
     }
 
 
@@ -30,6 +31,13 @@ document.addEventListener("DOMContentLoaded", () => {
         btnSalir.addEventListener("click", () => {
             localStorage.removeItem("usuarioLogueado"); // Limpia el localStorage
             window.location.href = "login.html"; // Redirige al login
+        });
+    }
+
+    const btnRegresar = document.getElementById("btnRegresar");
+    if (btnRegresar) {
+        btnRegresar.addEventListener("click", () => {
+            window.location.href = "login.html";
         });
     }
 
@@ -69,29 +77,29 @@ document.addEventListener("DOMContentLoaded", () => {
             const edad = document.getElementById("edadAlumno").value.trim();
 
             if (!nombre || !correo || !password || !numControl || !edad) {
-                alert("Todos los campos son obligatorios.");
+                Swal.fire("Error", "Todos los campos son obligatorios.", "error");
                 return;
             }
 
             // Uso de la librería de validación (CDN)
             if (typeof validarCorreo === "function" && !validarCorreo(correo)) {
-                alert("El formato del correo electrónico no es válido.");
+                Swal.fire("Formato Inválido", "El formato del correo electrónico no es válido.", "error");
                 return;
             }
 
             // Integración de la nueva indicación: validarPassword
             if (typeof validarPassword === "function" && !validarPassword(password)) {
-                alert("La contraseña no cumple con los requisitos mínimos de seguridad.");
+                Swal.fire("Seguridad Baja", "La contraseña no cumple con los requisitos mínimos de seguridad.", "error");
                 return;
             }
 
             if (typeof soloNumeros === "function" && !soloNumeros(numControl)) {
-                alert("El Número de Control debe contener solo números.");
+                Swal.fire("Dato Inválido", "El Número de Control debe contener solo números.", "error");
                 return;
             }
 
             if (numControl.length !== 6) {
-                alert("El Número de Control debe tener exactamente 6 dígitos.");
+                Swal.fire("Longitud Inválida", "El Número de Control debe tener exactamente 6 dígitos.", "warning");
                 return;
             }
 

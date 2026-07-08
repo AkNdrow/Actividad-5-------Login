@@ -44,7 +44,18 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Lógica del Formulario y Validaciones (Fase 2)
+    // Lógica del submenú desplegable "Captura"
+    const btnMenuUsuarios = document.getElementById("btnMenuUsuarios");
+    const subminiCaptura = document.getElementById("subminiCaptura");
+    
+    if (btnMenuUsuarios && subminiCaptura) {
+        subminiCaptura.classList.add("hidden"); // Oculto por defecto
+        btnMenuUsuarios.addEventListener("click", () => {
+            subminiCaptura.classList.toggle("hidden");
+        });
+    }
+
+    // Lógica del Formulario y Validaciones (Fase 2 y 3)
     const formAlumnos = document.getElementById("formAlumnos");
 
     if (formAlumnos) {
@@ -68,6 +79,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
+            // Integración de la nueva indicación: validarPassword
+            if (typeof validarPassword === "function" && !validarPassword(password)) {
+                alert("La contraseña no cumple con los requisitos mínimos de seguridad.");
+                return;
+            }
+
             if (typeof soloNumeros === "function" && !soloNumeros(numControl)) {
                 alert("El Número de Control debe contener solo números.");
                 return;
@@ -78,8 +95,37 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-            console.log("Validaciones pasadas correctamente para el alumno:", nombre);
-            // La lógica del modal (Fase 3) se conectará aquí en el siguiente paso.
+            // Fase 3: Evaluar la edad y mostrar el modal
+            const modalEdad = document.getElementById("modalEdad");
+            const modalIcono = document.getElementById("modalIcono");
+            const modalTitulo = document.getElementById("modalTitulo");
+            const modalMensaje = document.getElementById("modalMensaje");
+            const edadNum = parseInt(edad, 10);
+
+            if (edadNum >= 18) {
+                modalIcono.textContent = "✅";
+                modalTitulo.textContent = "Mayor de Edad";
+                modalMensaje.textContent = `El alumno ${nombre} es mayor de edad (${edadNum} años). Los datos fueron verificados.`;
+            } else {
+                modalIcono.textContent = "⚠️";
+                modalTitulo.textContent = "Menor de Edad";
+                modalMensaje.textContent = `El alumno ${nombre} es menor de edad (${edadNum} años). Requiere una carta responsiva del tutor.`;
+            }
+
+            if (modalEdad) {
+                modalEdad.classList.remove("hidden");
+            }
+        });
+    }
+
+    // Lógica para cerrar el Modal (Fase 3)
+    const btnCerrarModal = document.getElementById("btnCerrarModal");
+    const modalEdad = document.getElementById("modalEdad");
+    
+    if (btnCerrarModal && modalEdad) {
+        btnCerrarModal.addEventListener("click", () => {
+            modalEdad.classList.add("hidden");
+            if (formAlumnos) formAlumnos.reset(); // Limpia los campos
         });
     }
 });

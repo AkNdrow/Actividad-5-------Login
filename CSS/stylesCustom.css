@@ -1,3 +1,24 @@
-body {
-    
+/* Estilos personalizados para el Modal (Fase 3) */
+.modal-custom {
+    background-color: #ffffff; /* Hace match con bg-white */
+    border: 2px solid #9333ea; /* Hace match con border-purple-600 */
+    color: #1e293b; /* Hace match con text-slate-800 */
+}
+
+.modal-custom h3 {
+    color: #9333ea; /* text-purple-600 */
+}
+
+.modal-custom p {
+    color: #64748b; /* text-slate-500 */
+}
+
+.modal-custom button {
+    background-color: #f1f5f9; /* bg-slate-100 */
+    color: #475569; /* text-slate-600 */
+    border: 1px solid #cbd5e1; /* border-slate-300 */
+}
+
+.modal-custom button:hover {
+    background-color: #e2e8f0; /* bg-slate-200 */
 }

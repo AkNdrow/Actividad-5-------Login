@@ -42,45 +42,30 @@ Oaxaca de Juarez, Oaxaca.
 
 -----
 1.- 
-##  Documentación del Sistema Académico (`index.html`)
 
-### 1. Arquitectura y Framework Visual Usado
-Para el desarrollo de la interfaz interna del sistema se utilizó **Tailwind CSS (Versión 4)** como librería visual, integrada de manera eficiente mediante su CDN oficial. Esto permitió:
-* Un diseño limpio, moderno y responsivo sin saturar el proyecto con archivos CSS externos masivos.
-* Uso de componentes modulares como el **Sidebar** y el **Navbar** basados en arquitecturas reales de paneles de control corporativos.
+
+### 1. Pantalla de Acceso (`login.html`)
+Se diseñó e implementó la interfaz completa para el inicio de sesión del sistema utilizando Tailwind CSS. Este módulo se encarga de recibir las credenciales del usuario (correo electrónico y contraseña) y procesar la autenticación en el cliente. Cuenta con una intercepción del evento de envío para verificar que los campos no estén vacíos. Una vez validados los datos, el script almacena la identidad del usuario en el navegador y gestiona la redirección automática hacia el panel principal.
 
 ---
 
-### 2. Flujo de Datos entre Pantallas (Manejo de Sesión sin Backend)
-Dado que el proyecto consta de dos pantallas independientes (`login.html` e `index.html`), se implementó la API nativa del navegador **`localStorage`** para comunicar los datos de forma síncrona:
-
-1. **Persistencia:** Al pasar exitosamente las validaciones en el acceso, el archivo `login.js` guarda la identidad del usuario en el navegador utilizando `localStorage.setItem('usuarioLogueado', valor)`.
-2. **Recepción en el Panel:** Inmediatamente al cargar `index.html`, nuestro archivo `js/index.js` ejecuta `localStorage.getItem('usuarioLogueado')`. Si el dato existe, se inyecta dinámicamente en el Navbar; de lo contrario, se le trata como usuario anónimo o se restringe el acceso.
-3. **Cierre de Sesión:** Al pulsar la opción "Salir del sistema" en el dropdown del Navbar, se ejecuta `localStorage.removeItem('usuarioLogueado')`, limpiando la memoria del navegador y redirigiendo de inmediato al usuario de vuelta a `login.html`.
-
----
-
-### 3. Proceso de Creación Paso a Paso
-
-#### Paso A: Barra Superior Dinámica (Navbar)
-Se estructuró un contenedor fijo (`fixed top-0`) con una altura de 16 unidades (`h-16`). En el extremo izquierdo se posicionó el **botón hamburguesa**, el cual mediante un evento de clic en JavaScript conmuta la clase `-translate-x-full` en el Sidebar para ocultarlo o mostrarlo dinámicamente. En el extremo derecho se programó un menú desplegable (*Dropdown*) interactivo empleando la clase `hidden` de Tailwind, la cual se activa o desactiva con un interruptor lógico de JS (`classList.toggle('hidden')`).
-
-#### Paso B: Menú Lateral de Navegación (Sidebar)
-Se diseñó un menú fijo a la izquierda (`fixed left-0`) que ocupa todo el alto disponible de la pantalla restando el Navbar. Se incluyó la sección principal **"Usuarios"**, la cual despliega de manera identada el submenú obligatorio **"Captura"**. Este submenú funciona mediante un enlace de anclaje directo hacia el formulario principal.
-
-#### Paso C: Formulario de Alumnos e Integración de Librería
-El módulo de captura contiene un formulario estructurado de manera semántica (`<form id="formAlumnos">`). Los campos de texto y contraseñas consumen las funciones modulares de validación asíncronas de la librería compartida del proyecto (`Libreria.js`). 
-* **Validación Especial de Rúbrica:** Se inyectó una regla estricta sobre el campo "Número de Control", evaluando mediante JavaScript que la longitud de la cadena (`.length`) sea exactamente igual a **6 dígitos numéricos** y bloqueando cualquier intento de envío de datos corruptos mediante el método `e.preventDefault()`.
-
-#### Paso D: Despliegue Lógico del Modal de Edad
-Se maquetó una caja modal flotante oculta por defecto en el flujo del DOM. Al dar clic en "Registrar" y pasar todas las validaciones previas, JavaScript evalúa la condicional de la edad del alumno:
-* **Si `edad >= 18`:** Modifica el DOM pintando un icono de éxito (:) y un mensaje confirmando que el alumno es Mayor de Edad.
-* **Si `edad < 18`:** Modifica el modal pintando un icono de advertencia (X) detallando la restricción de edad.
-Posteriormente, remueve la clase `hidden` para mostrar el modal de forma emergente con un efecto de desenfoque de fondo (`backdrop-blur-sm`).
+### 2. Barra de Navegación Superior (`index.html` - Navbar)
+Se programó la barra superior fija del panel de control interno. Este componente incluye:
+* El botón de activación con patrón hamburguesa que servirá de disparador para el menú lateral.
+* Un menú desplegable interactivo para el usuario que inició sesión.
+* La maquetación responsiva basada en los estilos oficiales de la plataforma.
 
 ---
 
-###  Métodos y Funciones Principales Implementadas
-* **`localStorage.getItem()` / `removeItem()`**: Gestión del estado de la sesión del usuario entre pantallas.
-* **`classList.toggle()`**: Control de visibilidad del menú lateral (Sidebar) y el dropdown de usuario sin necesidad de mutar estilos en línea.
-* **`e.preventDefault()`**: Intercepción del envío del formulario para procesar las validaciones del lado del cliente antes de otorgar una respuesta.
+### 3. Gestión del Estado de la Sesión (`js/index.js`)
+Se desarrolló la lógica encargada de comunicar ambas pantallas sin necesidad de tecnologías en el servidor, utilizando la API de `localStorage`:
+* **Persistencia:** Al iniciar sesión en `login.html`, se ejecuta `localStorage.setItem` para guardar el correo del usuario de forma síncrona.
+* **Lectura:** Al cargar `index.html`, el script realiza un `localStorage.getItem` para extraer el nombre del usuario conectado e inyectarlo dinámicamente en el contenedor de la barra superior.
+* **Cierre de sesión:** Al pulsar el botón de salida en el menú desplegable del Navbar, se ejecuta `localStorage.removeItem` para limpiar las credenciales de la memoria del navegador y redirigir inmediatamente el flujo de vuelta a la pantalla de acceso.
+
+---
+
+### 4. Estructura de la Librería de Validaciones (`js/Libreria.js`)
+Se crearon las funciones base dentro de la librería compartida del proyecto para que puedan ser consumidas por el módulo de captura escolar:
+* **`validarCorreo(correo)`:** Método que evalúa mediante una expresión regular que la cadena ingresada corresponda a la estructura de un correo electrónico válido.
+* **`validarPassword(password)`:** Función que comprueba las reglas básicas de seguridad, verificando que la contraseña cumpla con una longitud mínima de 8 caracteres y contenga al menos una letra y un número.

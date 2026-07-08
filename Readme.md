@@ -42,7 +42,7 @@ Oaxaca de Juarez, Oaxaca.
 
 -----
 1.- 
-## 📘 Documentación del Sistema Académico (`index.html`)
+##  Documentación del Sistema Académico (`index.html`)
 
 ### 1. Arquitectura y Framework Visual Usado
 Para el desarrollo de la interfaz interna del sistema se utilizó **Tailwind CSS (Versión 4)** como librería visual, integrada de manera eficiente mediante su CDN oficial. Esto permitió:

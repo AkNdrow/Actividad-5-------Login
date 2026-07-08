@@ -32,4 +32,15 @@ document.addEventListener("DOMContentLoaded", () => {
             window.location.href = "login.html"; // Redirige al login
         });
     }
+
+    // Lógica del Sidebar (Fase 1)
+    const btnHamburguesa = document.getElementById("btnHamburguesa");
+    const sidebar = document.getElementById("sidebar");
+
+    if (btnHamburguesa && sidebar) {
+        btnHamburguesa.addEventListener("click", (e) => {
+            e.stopPropagation();
+            sidebar.classList.toggle("-translate-x-full");
+        });
+    }
 });

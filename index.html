@@ -27,6 +27,14 @@ Navbar con nombre de usuario: mostrar el nombre o correo capturado en login.html
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema Académico - Panel de Control</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    
+    <!-- Enlaces CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/AkNdrow/Actividad-3-----Componente-VIsual@1.0.1/CSS/EstilosComponentes.css">
+    
+    <!-- Enlaces JS -->
+    <script src="https://cdn.jsdelivr.net/gh/AkNdrow/Actividad-3-----Componente-VIsual@1.0.1/JS/LibreriaComponentes.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/AkNdrow/Actividad-2---Utileria@1.0.0/JS/utileria.js"></script>
+
     <script src="js/Libreria.js" defer></script>
     <script src="js/index.js" defer></script>
 </head>
@@ -55,7 +63,26 @@ Navbar con nombre de usuario: mostrar el nombre o correo capturado en login.html
     </nav>
 
     
-    <div id="sidebarContainer"></div>
+    <div id="sidebarContainer">
+        <aside id="sidebar" class="fixed top-16 left-0 z-30 w-64 h-[calc(100vh-64px)] bg-white border-r border-slate-200 transition-transform duration-300 transform -translate-x-full md:translate-x-0">
+            <div class="p-4 space-y-2">
+                <div>
+                    <button id="btnMenuUsuarios" class="w-full flex items-center justify-between p-3 rounded-lg hover:bg-slate-100 transition font-semibold">
+                        <div class="flex items-center gap-3">
+                            <span>👥</span>
+                            <span>Usuarios</span>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                    </button>
+                    <div id="subminiCaptura" class="pl-9 mt-1 space-y-1">
+                        <a href="#moduloCaptura" class="block p-2 text-sm text-purple-600 font-medium border-l-2 border-purple-600 pl-3">
+                            📌 Captura
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
 
     
     <main class="pt-24 p-6 min-h-screen flex items-center justify-center">

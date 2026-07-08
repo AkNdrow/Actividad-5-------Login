@@ -26,7 +26,7 @@ Ing. Adelina Martínez Nieto
 **Estudiantes:**<br>
 Cuevas Garcia Andrés
 <br>
-Moisés Pascual Coyolt
+Pascual Coyolt Moises
 <br>
 
 <br><br><br><br><br><br>
